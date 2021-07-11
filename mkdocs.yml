@@ -1,0 +1,20 @@
+site_name: deCONZ C++ Documentation
+theme:
+  name: readthedocs
+  custom_dir: custom_theme/
+repo_url: https://github.com/dresden-elektronik/deconz-dev-doc
+markdown_extensions:
+    - admonition
+    - attr_list
+    - smarty
+    - toc:
+        permalink: True
+extra_css:
+  - css/extra.css
+nav:
+    - General:
+      - Introduction: index.md
+    - 'Modules':
+      - modules/class-device/index.md
+      - modules/ddf/index.md
+      - modules/fault-tolerance/index.md

@@ -1,0 +1,158 @@
+.icon.icon-home::before {
+    display: none;
+}
+
+/* side nav brand color */
+.wy-side-nav-search {
+	background-color: #343131;
+}
+
+/* inline code */
+.rst-content code {
+	color: #c14;
+}
+
+/* since version note */
+[data-since] {
+    /*
+    display: grid;
+    */
+}
+
+
+[data-since]::after {
+    /*
+        border: 1px solid #d0d0d0;
+        border-radius: 3px;
+        background-color: #f0f0f0;
+        font-style: normal;
+    */
+    margin-top: 1rem;
+    padding: 0.5rem 0.5;
+    color: #696;
+    display: block;
+    content: "Added in " attr(data-since);
+
+}
+
+em.deprecated {
+    margin-top: 1rem;
+    padding: 0.5rem 0.5;
+    color: #C31;
+    display: block;
+    font-style: normal;
+}
+
+/* API attribute*/
+code.api-attribute {
+    color: #222;
+    border-radius: 3px;
+    font-size: 0.75rem;
+}
+
+/* value lists in attribute descriptions */
+ul.value-list {
+    margin-top: 0.5rem;
+}
+
+ul.value-list li {
+    margin-left: 1em !important;
+    line-height: 1.4em;
+    list-style: none !important;
+}
+
+/* general yellow mark item */
+mark {
+    font-style: normal;
+    font-weight: normal;
+    padding: 2px 0.25rem;
+    color: #444;
+    background-color: #fff498;
+}
+
+/* REST headers / response */
+pre.headers {
+    margin-bottom: 0;
+    padding-left: 1rem;
+    border: 1px solid #dcdcdc;
+    background-color: #f4f4f4;
+}
+
+pre.headers + pre {
+    margin-top: 0;
+    border-left: 1px solid #dcdcdc;
+    border-right: 1px solid #dcdcdc;
+    border-bottom: 1px solid #dcdcdc;
+    background-color: #f7f7f7;
+}
+
+pre.headers code, pre.headers + pre code {
+    background: none;
+    border: none;
+}
+
+/* Tables */
+
+table {
+    font-size: 0.9rem;
+    width: unset !important;
+    /*
+    */
+    border-collapse: separate !important;
+    border-spacing: 0;
+    border: 1px solid #a9a9a9;
+    border-radius: 2px;
+    caption-side: bottom;
+    margin: 2rem 0;
+}
+
+table caption {
+    margin-top: 0.5rem;
+    opacity: 0.75;
+}
+
+thead {
+    font-size: 0.9rem; /* slightly smaller */
+}
+
+tr th,
+tr td {
+	border: unset !important; /* reset theme style */
+    padding: 0.5rem 1rem;
+    text-align: start;
+}
+
+td p {
+    font-size: 0.9rem; /* same as plain td */
+    margin-bottom: 0.5rem;
+}
+/*
+table tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+table tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+*/
+
+table tr th:not(:last-child) {
+    border-right: 1px solid #dcdcdc !important;
+}
+table tr td:not(:last-child) {
+    border-right: 1px solid #dcdcdc !important;
+}
+
+table tr:not(:last-child) td,
+table thead tr td {
+    border-bottom: 1px solid #dcdcdc !important;
+}
+
+table tr:not(:last-child) th,
+table thead tr th {
+    border-bottom: 1px solid #a9a9a9 !important;
+}
+
+table tr.strong-border-bottom td {
+    border-bottom: 1px solid #a9a9a9 !important;
+}
