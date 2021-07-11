@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Device Description Files - deCONZ C++ Documentation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../../css/extra.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Device Description Files";
+    var mkdocs_page_input_path = "modules/ddf/index.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> deCONZ C++ Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">General</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modules</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../class-device/">Device class</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Device Description Files</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#goals">Goals</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#handling-in-other-projects">Handling in other projects</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#directory-structure">Directory structure</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ddf-file-content">DDF file content</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#generic-items">Generic items</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parsing-zigbee-messages">Parsing Zigbee messages</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#the-function-pointer-fn">The function pointer "fn"</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#evaluating-javascript">Evaluating Javascript</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#without-javascript">Without Javascript</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#commands">Commands</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#button-maps">Button maps</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#validation">Validation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#example-ddf-files">Example DDF files</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#ikea-kadrilj-roller-blind">IKEA KADRILJ roller blind</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#philips-hue-motion-sensor">Philips Hue motion sensor</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#philips-hue-dimmer-switch">Philips Hue dimmer switch</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#xiaomi-vibration-sensor-djt11lm">Xiaomi vibration sensor DJT11LM</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../fault-tolerance/">Fault Tolerance</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">deCONZ C++ Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Modules &raquo;</li>
+        
+      
+    
+    <li>Device Description Files</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/dresden-elektronik/deconz-dev-doc/edit/master/docs/modules/ddf/index.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="device-description-files">Device Description Files<a class="headerlink" href="#device-description-files" title="Permanent link">&para;</a></h1>
+<p>This is a draft document to explore Device Description Files (DDF).</p>
+<p><mark>Work in Progress</mark></p>
+<h3 id="goals">Goals<a class="headerlink" href="#goals" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Describe devices and their capabilities in JSON files.</li>
+<li>Simplify contribution of new device handlers without C++ knowledge.</li>
+<li>Cleanup many of the C++ device specific quirks to simplify the code base.</li>
+<li>Smooth transition: DDF files won&rsquo;t replace existing implementations in one big release, but rather will be used for a device when available.</li>
+<li>Automated generation of device documentation and supported devices lists.</li>
+</ul>
+<h3 id="handling-in-other-projects">Handling in other projects<a class="headerlink" href="#handling-in-other-projects" title="Permanent link">&para;</a></h3>
+<p><strong>SmartThings</strong> Device handlers are implemented in <em>.groovy</em> files which may contain one or more device descriptions, e.g. <a href="https://github.com/bspranger/Xiaomi/blob/master/devicetypes/bspranger/xiaomi-aqara-button.src/xiaomi-aqara-button.groovy">xiaomi-aqara-button.groovy</a>.</p>
+<p><strong>Zigbee2MQTT</strong> Used one large devices.js file in the past. New code uses modular device specific converters, one per manufacturer, written in Javascript, e.g. <a href="https://github.com/Koenkk/zigbee-herdsman-converters/blob/master/devices/xiaomi.js">xiaomi.js</a>. Similar devices inherit common functions from base files.</p>
+<p><a href="https://www.zigbee2mqtt.io/how_tos/how_to_support_new_devices.html">https://www.zigbee2mqtt.io/how_tos/how_to_support_new_devices.html</a></p>
+<p><strong>Home Assistant ZHA</strong> Device handlers are maintained in the zigpy project written in Python.</p>
+<p><a href="https://github.com/zigpy/zha-device-handlers">https://github.com/zigpy/zha-device-handlers</a></p>
+<h3 id="directory-structure">Directory structure<a class="headerlink" href="#directory-structure" title="Permanent link">&para;</a></h3>
+<p>Since the amount of devices is expected to grow quickly, over time there will be hundreds of device descriptions. In order to be maintainable they need to be organized with the aim to prevent &ldquo;monster&rdquo; files. The current implementation uses one directory per vendor and one file per product:</p>
+<pre><code>devices/
+    generic/
+        items/
+    ikea/
+        motion-sensor.json
+        button5-remote1.json
+        button5-remote2.json
+        e27_cws_opal_600lm_light.json
+        gu10_ws_400lm_light.json
+        kadrilj_blind.json
+    philips/
+        sml001_motion_sensor.json
+        dimmer_switch.json
+    sunricher/
+        dimmer.json
+</code></pre>
+<p>This is similar to SmartThings device descriptions. The REST-API plugin loads DDF files by traversing through the directory tree, and for easier development can even hot reload them when a file changes.</p>
+<h2 id="ddf-file-content">DDF file content<a class="headerlink" href="#ddf-file-content" title="Permanent link">&para;</a></h2>
+<p>A DDF file provides a high level view and contains references to where data is located as well as the commands which can be called. In contrast to other projects most of the implementation details are not exposed.</p>
+<p><strong>Example</strong> <em>IKEA TRÅDFRI bulb GU10 WS 400lm</em></p>
+<pre><code class="language-json">{
+    &quot;schema&quot;: &quot;devcap1.schema.json&quot;,
+    &quot;doc:path&quot;: &quot;ikea/gu10_ws_400lm_light.md&quot;,
+    &quot;doc:hdr&quot;: &quot;TRÅDFRI bulb GU10 WS 400lm&quot;,
+    &quot;manufacturername&quot;: &quot;$MF_IKEA&quot;,
+    &quot;modelid&quot;: &quot;TRADFRI bulb GU10 WS 400lm&quot;,
+    &quot;product&quot;: &quot;TRÅDFRI bulb GU10 WS 400lm&quot;,
+    &quot;status&quot;: &quot;Bronze&quot;,
+    &quot;md:known_issues&quot;: [ &quot;ikea_known_issues_radio_silence.md&quot; ],
+    &quot;supportsMgmtBind&quot;: true,
+    &quot;subdevices&quot;: [
+        {
+            &quot;type&quot;: &quot;$TYPE_COLOR_TEMPERATURE_LIGHT&quot;,
+            &quot;restapi&quot;: &quot;/lights&quot;,
+            &quot;uuid&quot;: [&quot;$address.ext&quot;, &quot;0x01&quot;],
+            &quot;items&quot;: [
+                { &quot;name&quot;: &quot;attr/lastannounced&quot; },
+                { &quot;name&quot;: &quot;attr/lastseen&quot; },
+                { &quot;name&quot;: &quot;attr/manufacturername&quot; },
+                { &quot;name&quot;: &quot;attr/modelid&quot; },
+                { &quot;name&quot;: &quot;attr/name&quot; },
+                { &quot;name&quot;: &quot;attr/swversion&quot; },
+                { &quot;name&quot;: &quot;attr/type&quot; },
+                { &quot;name&quot;: &quot;attr/uniqueid&quot; },
+                { &quot;name&quot;: &quot;config/colorcapabilities&quot;, &quot;default&quot;: 16 },
+                { &quot;name&quot;: &quot;config/ctmin&quot;, &quot;default&quot;: 250 },
+                { &quot;name&quot;: &quot;config/ctmax&quot;, &quot;default&quot;: 454 },
+                { &quot;name&quot;: &quot;state/on&quot; },
+                { &quot;name&quot;: &quot;state/bri&quot;},
+                { &quot;name&quot;: &quot;state/ct&quot; },
+                { &quot;name&quot;: &quot;state/reachable&quot; },
+                { &quot;name&quot;: &quot;state/colormode&quot; },
+                { &quot;name&quot;: &quot;state/alert&quot; }
+            ]
+        }
+    ],
+    &quot;bindings&quot;:  [
+        {
+            &quot;bind&quot;: &quot;unicast&quot;,
+            &quot;src.ep&quot;: 1,
+            &quot;cl&quot;: &quot;0x0006&quot;,
+            &quot;report&quot;: [
+                {&quot;at&quot;: &quot;0x0000&quot;, &quot;dt&quot;: &quot;0x10&quot;, &quot;min&quot;: 5, &quot;max&quot;: 1800 }
+            ]
+        },
+        {
+            &quot;bind&quot;: &quot;unicast&quot;,
+            &quot;src.ep&quot;: 1,
+            &quot;cl&quot;: &quot;0x0008&quot;,
+            &quot;report&quot;: [
+                {&quot;at&quot;: &quot;0x0000&quot;, &quot;dt&quot;: &quot;0x20&quot;, &quot;min&quot;: 5, &quot;max&quot;: 1800, &quot;change&quot;: &quot;0x01&quot; }
+            ]
+        },
+        {
+            &quot;bind&quot;: &quot;unicast&quot;,
+            &quot;src.ep&quot;: 1,
+            &quot;cl&quot;: &quot;0x0300&quot;,
+            &quot;report&quot;: [
+                {&quot;at&quot;: &quot;0x0008&quot;, &quot;dt&quot;: &quot;0x30&quot;, &quot;min&quot;: 1, &quot;max&quot;: 1800 },
+                {&quot;at&quot;: &quot;0x0003&quot;, &quot;dt&quot;: &quot;0x21&quot;, &quot;min&quot;: 5, &quot;max&quot;: 1795, &quot;change&quot;: &quot;0x0a&quot; },
+                {&quot;at&quot;: &quot;0x0004&quot;, &quot;dt&quot;: &quot;0x21&quot;, &quot;min&quot;: 5, &quot;max&quot;: 1795, &quot;change&quot;: &quot;0x0a&quot; },
+                {&quot;at&quot;: &quot;0x0007&quot;, &quot;dt&quot;: &quot;0x21&quot;, &quot;min&quot;: 5, &quot;max&quot;: 1800, &quot;change&quot;: &quot;0x01&quot; }
+            ]
+        }
+    ]
+}
+</code></pre>
+<p>This DDF file describes the light with one sub-resource.</p>
+<ol>
+<li>The <strong>schema</strong> key references the <a href="https://json-schema.org/learn/getting-started-step-by-step.html">JSON schema</a> against which the device can be verified.</li>
+<li>String values which are prefixed with <code>$</code>, like <code>"$MF_IKEA"</code> are constants and will be replaced with the actual values in the plugin. These keys might be defined in another JSON file or come from the ZCLDB.</li>
+<li>The <code>uuid</code> field specifies the parts of which the <code>uniqueId</code> will be generated.</li>
+<li>The <code>subdevices</code> array may hold one or more sub devices like lights and sensors.</li>
+<li>The <code>items</code> array contains items where the <code>name</code> refers to a <code>ResourceItem</code> suffix. These items are merged with the content of <code>generic/items/&lt;name&gt;.json</code>.</li>
+<li>The <code>bindings</code> array contains all bindings and respective reporting configuration.</li>
+</ol>
+<h3 id="generic-items">Generic items<a class="headerlink" href="#generic-items" title="Permanent link">&para;</a></h3>
+<p>Each item may have read, write and parse functions to build the bridge between Zigbee and the <code>ResourceItem</code>. The generic items provide defaults for these functions, for example <a href="https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/devices/generic/items/config_checkin_item.json">generic/items/config_checkin_item.json</a> is written as:</p>
+<pre><code class="language-json">{
+    &quot;schema&quot;: &quot;resourceitem1.schema.json&quot;,
+    &quot;id&quot;: &quot;config/checkin&quot;,
+    &quot;datatype&quot;: &quot;UInt32&quot;,
+    &quot;access&quot;: &quot;RW&quot;,
+    &quot;public&quot;: false,
+    &quot;range&quot;: [0, 4294967295],
+    &quot;description&quot;: &quot;Configures the check-in interval for the Poll Control cluster.&quot;,
+    &quot;parse&quot;: {&quot;fn&quot;: &quot;zcl&quot;, &quot;ep&quot;: 0, &quot;cl&quot;: &quot;0x0020&quot;, &quot;at&quot;: &quot;0x0000&quot;, &quot;eval&quot;: &quot;Item.val = Attr.val&quot;},
+    &quot;read&quot;: {&quot;fn&quot;: &quot;zcl&quot;, &quot;ep&quot;: 0, &quot;cl&quot;: &quot;0x0020&quot;, &quot;at&quot;: &quot;0x0000&quot;},
+    &quot;write&quot;: {&quot;fn&quot;: &quot;zcl&quot;, &quot;ep&quot;: 0, &quot;cl&quot;: &quot;0x0020&quot;, &quot;at&quot;: &quot;0x0000&quot;, &quot;dt&quot;: &quot;0x23&quot;, &quot;eval&quot;: &quot;Item.val&quot;},
+    &quot;refresh.interval&quot;: 3600
+}
+</code></pre>
+<p>If a DDF file contains the item <code>{"name": "config/checkin"}</code> the above content will be loaded. Every key can be overwritten in the DDF file if device specific customizations are needed.</p>
+<h3 id="parsing-zigbee-messages">Parsing Zigbee messages<a class="headerlink" href="#parsing-zigbee-messages" title="Permanent link">&para;</a></h3>
+<p>The <code>parse</code> key references a named C++ function which can be specified to parse and transform an incoming APSDE-DATA.indication and derive the <code>ResourceItem</code> value from it. Often the generic parse function is sufficient for example the item <code>state/bri</code> is parameterized as:</p>
+<pre><code class="language-json">{
+    &quot;name&quot;: &quot;state/bri&quot;,
+    &quot;parse&quot;: {
+        &quot;fn&quot;: &quot;zcl&quot;,
+        &quot;ep&quot;: 1, &quot;cl&quot;: &quot;0x0008&quot;, &quot;at&quot;: &quot;0x0000&quot;,
+        &quot;eval&quot;: &quot;Item.val = Attr.val * 254 / 100&quot;
+    }
+}
+</code></pre>
+<p>which means:</p>
+<ul>
+<li>Use the named C++ parse function <code>"zcl"</code>;<br />
+  (Note the <code>"fn": "zcl"</code> key is optional since it&rsquo;s the default if ommited)</li>
+<li>When a ZCL Read Attributes Response or ZCL Attribute Report command is received on
+  endpoint 1, cluster 0x0008, containing the attribute 0x0000;</li>
+<li>Parse the value and evaluate the expression <code>Item.val = Attr.val * 254 / 100</code> where <code>Item</code> and <code>Attr</code> are the <code>ResourceItem</code> and <code>deCONZ::ZclAttribute</code> exposed to the Javascript engine. The result will be the new value of the <code>ResourceItem</code> and related events are fired automatically.</li>
+</ul>
+<p><strong>Note:</strong> Javascript expressions are evaluated via <code>QJSEngine</code>.</p>
+<h4 id="the-function-pointer-fn">The function pointer &ldquo;fn&rdquo;<a class="headerlink" href="#the-function-pointer-fn" title="Permanent link">&para;</a></h4>
+<p>The <code>"fn"</code> key is like a function pointer in C++ which points to a specific read, write or parse function. The default <code>{"parse": { "fn": "zcl", ... }}</code> function can be applied in many cases but specialized functions for other cases like <code>{"parse": { "fn": "xiaomi:special", ... }}</code> can be implemented to simplify certain tasks.</p>
+<p>The remaining key-value pairs in the <code>"parse"</code> object are interpretet within the specific parse function. Note that alternative functions can use different parameters and some parameters like <code>"mfcode"</code> are optional and have default values.</p>
+<h4 id="evaluating-javascript">Evaluating Javascript<a class="headerlink" href="#evaluating-javascript" title="Permanent link">&para;</a></h4>
+<p>The <code>"eval"</code> key in the <code>"zcl"</code> functions is the most basic yet powerful approach to support reading writing and parsing of arbitrary Zigbee messages without having to implement any C++ code for yet another custom Zigbee device.</p>
+<h4 id="without-javascript">Without Javascript<a class="headerlink" href="#without-javascript" title="Permanent link">&para;</a></h4>
+<p>Since read, write and parse functions are just abstract function pointers it&rsquo;s always possible to implement a tailored named C++ function which can be referenced via the <code>"fn"</code> key, for example common functions like <code>{"fn": "parse.zcl.battery"}</code> can be added which don&rsquo;t use Javascript at all.</p>
+<p>The C++ code for currently implemended functions can be found in <a href="https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/device_access_fn.cpp">device_access_fn.cpp</a>.</p>
+<h3 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h3>
+<p><mark>Not Implemented yet</mark></p>
+<p>Commands reference C++ functions which will be called via the REST-API. Similar to parsing ZCL values they can transform the values coming from the REST-API into values which fit the specific device, for example in order to reverse the lift value.</p>
+<p>For some devices the standard functions don&rsquo;t fit and alternate commands can be specified to carry out the same task. For example the Xiaomi curtain motor uses non standard interface to change the <code>state/lift</code> value, here a</p>
+<p><code>{"cmd": "lift", "fn": "xiaomiWindowCoveringLift", "ep": 1, "cl": "0x0102", "at": "0x0008", "eval": "100 - Item.val"}</code> could be specified.</p>
+<p>For convenience simpler functions can be provided, for example the standard window covering lift function can be specified as:</p>
+<p><code>{"cmd": "lift", "fn": "windowCoveringLift", "eval": "Item.val"}</code> since often the {Endpoint, ClusterId, AttributeId} parameters can figured out automatically. In the example above the <code>windowCoveringStop</code> is such a case. The goal should be to figure out functions which need as little parameters as possible to keep the device description files as simple as possible.</p>
+<h3 id="button-maps">Button maps<a class="headerlink" href="#button-maps" title="Permanent link">&para;</a></h3>
+<p>For switches <code>state/buttonevent</code> refers to device specific clusters and attributes. The JSON button maps <a href="https://github.com/dresden-elektronik/deconz-rest-plugin/pull/3127">https://github.com/dresden-elektronik/deconz-rest-plugin/pull/3127</a> describe the transformations from Zigbee &rarr; <code>state/buttonevent</code>. These button maps could be part of the device capabilities file itself to keep everything together.</p>
+<h3 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h3>
+<p>Each device description can be validated against a JSON schema to prevent errors. Like it&rsquo;s already done for Button Maps the verification can be automated via GitHub actions for pull request. The JSON schema further provides a way to specify versions of supported schemas.</p>
+<h2 id="example-ddf-files">Example DDF files<a class="headerlink" href="#example-ddf-files" title="Permanent link">&para;</a></h2>
+<p>The following examples demonstrate notable features in already working DDF files. Note these DDF files deliberately use Javascript <em>eval</em> capabilities to show what is possible without writing C++ code.</p>
+<p>The auto generated documentation can be found at:<br />
+<a href="https://dresden-elektronik.github.io/deconz-rest-doc/devices">https://dresden-elektronik.github.io/deconz-rest-doc/devices</a></p>
+<h4 id="ikea-kadrilj-roller-blind">IKEA KADRILJ roller blind<a class="headerlink" href="#ikea-kadrilj-roller-blind" title="Permanent link">&para;</a></h4>
+<p>Source: <a href="https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/devices/ikea/kadrilj_blind.json">devices/ikea/kadrilj_blind.json</a></p>
+<ul>
+<li>Two sub-resources under /lights and /sensors</li>
+<li>Customized parse function parameters</li>
+<li>Some items marked as deprecated</li>
+<li>Binding and reporting configuration</li>
+</ul>
+<h4 id="philips-hue-motion-sensor">Philips Hue motion sensor<a class="headerlink" href="#philips-hue-motion-sensor" title="Permanent link">&para;</a></h4>
+<p>Source: <a href="https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/devices/philips/sml001_motion_sensor.json">devices/philips/sml001_motion_sensor.json</a></p>
+<ul>
+<li>Three /sensors sub-resources</li>
+<li>Manufacturer specific ZCL attribute parsing</li>
+<li>External Javascript to parse <code>state/lightlevel</code></li>
+<li>Binding and reporting configuration</li>
+</ul>
+<h4 id="philips-hue-dimmer-switch">Philips Hue dimmer switch<a class="headerlink" href="#philips-hue-dimmer-switch" title="Permanent link">&para;</a></h4>
+<p>Source: <a href="https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/devices/philips/rwl02_dimmer_switch.json">devices/philips/rwl02_dimmer_switch.json</a></p>
+<ul>
+<li>One /sensors sub-resource</li>
+<li>Manufacturer specific ZCL attribute reading, writing and parsing</li>
+<li>Binding and reporting configuration</li>
+</ul>
+<!--
+#### LifeControl MCLH-08 environment sensor
+
+This sensor transports values for carbon monoxide and humidity in non standard ways within the temperature cluster.
+
+
+<pre><code class="language-json">
+{
+    &quot;schema&quot;: &quot;devcap1.schema.json&quot;,
+    &quot;manufacturer&quot;: &quot;$MF_NEXTURN&quot;,
+    &quot;modelid&quot;: &quot;VOC_Sensor&quot;,
+    &quot;product&quot;: &quot;MCLH-08 environment sensor&quot;,
+    &quot;reporting&quot;: [
+        [&quot;report/5&quot;, 1, &quot;0x0402&quot;, &quot;0x0000&quot;, 1, 1800],
+        [&quot;report/5&quot;, 1, &quot;0x0402&quot;, &quot;0x0001&quot;, 1, 1800],
+        [&quot;report/5&quot;, 1, &quot;0x0402&quot;, &quot;0x0002&quot;, 1, 1800],
+        [&quot;report/5&quot;, 1, &quot;0x0001&quot;, &quot;0x0021&quot;, 5, 3600]
+    ],
+    &quot;subdevices&quot;: [
+        {
+            &quot;type&quot;: &quot;$TYPE_TEMPERATURE_SENSOR&quot;,
+            &quot;uuid&quot;: [ &quot;$address.ext&quot;, &quot;01&quot;, &quot;0402&quot;],
+            &quot;items&quot;: [
+                {
+                    &quot;name&quot;: &quot;state/temperature&quot;,
+                    &quot;parse&quot;: [&quot;parseGenericAttr/4&quot;, 1, &quot;0x0402&quot;, &quot;0x0000&quot;, &quot;$raw + $config/offset&quot;],
+                },
+                {
+                    &quot;name&quot;: &quot;config/offset&quot;,
+                    &quot;default&quot;: 0,
+                },
+                {
+                    &quot;name&quot;: &quot;state/battery&quot;,
+                    &quot;parse&quot;: [&quot;parseGenericAttr/4&quot;, 1, &quot;0x0001&quot;, &quot;0x0021&quot;, &quot;$raw&quot;]
+                }
+            ]
+        },
+        {
+            &quot;type&quot;: &quot;$TYPE_HUMIDITY_SENSOR&quot;,
+            &quot;uuid&quot;: [ &quot;$address.ext&quot;, &quot;01&quot;, &quot;0405&quot;],
+            &quot;items&quot;: [
+                {
+                    &quot;name&quot;: &quot;state/humidity&quot;,
+                    &quot;parse&quot;: [&quot;parseGenericAttr/4&quot;, 1, &quot;0x0402&quot;, &quot;0x0001&quot;, &quot;Math.min(Math.max(0, $raw + $config/offset), 10000)&quot;],
+                },
+                {
+                    &quot;name&quot;: &quot;config/offset&quot;,
+                    &quot;default&quot;: 0,
+                }
+            ],                
+        },
+        {
+            &quot;type&quot;: &quot;$TYPE_CARBON_MONOXIDE_SENSOR&quot;,
+            &quot;uuid&quot;: [ &quot;$address.ext&quot;, &quot;01&quot;, &quot;0500&quot;],
+            &quot;items&quot;: [
+                {
+                    &quot;name&quot;: &quot;state/carbonmonoxide&quot;,
+                    &quot;parse&quot;: [&quot;parseGenericAttr/4&quot;, 1, &quot;0x0402&quot;, &quot;0x0002&quot;, &quot;$raw&quot;],
+                }
+            ]
+        }
+    ]
+}
+
+</code></pre>
+
+-->
+
+<h4 id="xiaomi-vibration-sensor-djt11lm">Xiaomi vibration sensor DJT11LM<a class="headerlink" href="#xiaomi-vibration-sensor-djt11lm" title="Permanent link">&para;</a></h4>
+<p>Source: <a href="https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/devices/xiaomi/aq1_vibration_sensor.json">devices/xiaomi/aq1_vibration_sensor.json</a></p>
+<ul>
+<li>One /sensors sub-resource</li>
+<li>Manufacturer specific ZCL attribute reading, writing and parsing</li>
+<li>Customized <code>attr/swversion</code> parsing</li>
+<li>Using custom <code>{"fn":"xiaomi:special"}</code> parse function</li>
+<li>External Javascript to parse <code>config/battery</code> which can be shared with other Xiaomi DDF files</li>
+<li>External Javascript to parse <code>state/orientation</code></li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../fault-tolerance/" class="btn btn-neutral float-right" title="Fault Tolerance">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../class-device/" class="btn btn-neutral" title="Device class"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/dresden-elektronik/deconz-dev-doc/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../class-device/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../fault-tolerance/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

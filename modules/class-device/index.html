@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Device class - deCONZ C++ Documentation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../../css/extra.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Device class";
+    var mkdocs_page_input_path = "modules/class-device/index.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> deCONZ C++ Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">General</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modules</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Device class</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#state-machine">State Machine</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#high-level-view">High Level View</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#node-descriptor-state">Node Descriptor State</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#bindings-sub-state-machine">Bindings Sub State Machine</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#relation-to-device-description-files-ddf">Relation to Device Description Files (DDF)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#state-change-and-rest-api-functionality">State Change and REST API Functionality</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ddf/">Device Description Files</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../fault-tolerance/">Fault Tolerance</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">deCONZ C++ Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Modules &raquo;</li>
+        
+      
+    
+    <li>Device class</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/dresden-elektronik/deconz-dev-doc/edit/master/docs/modules/class-device/index.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="device-class">Device class<a class="headerlink" href="#device-class" title="Permanent link">&para;</a></h1>
+<p>This page serves as an overview of the <code>Device</code> class.</p>
+<p><mark>Work in Progress</mark></p>
+<p><a href="https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/device.h">device.h</a> <a href="https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/device.cpp">device.cpp</a></p>
+<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
+<p>The <code>Device</code> class is a generic controller for a device which works on dynamic <code>Resource</code> and <code>ResourceItem</code> objects. The most important detail is that this class knows nothing about specific devices. Internally the class is driven by a state machine which reacts to events and can also emit events to the outside world.</p>
+<p>The class isn&rsquo;t aware about sleeping end-devices or routers, the knowledge that a device is able to receive commands comes from <em>Awake</em> and <em>Poll Events</em> which are generated by external classes and command handlers.</p>
+<h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h2>
+<p>The class depends only on a few other classes and modules. </p>
+<ul>
+<li><code>Resource</code> as base class and to reference sub devices, which are just seen as Resource instances;</li>
+<li><code>Event</code> to interact with other components and provide lose coupling;</li>
+<li><code>deCONZ::Node</code> to access <em>Simple Descriptors</em> and <em>Node Descriptor</em>;</li>
+<li><a href="https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/device_access_fn.h">Device Access (DA)</a> module to execute <strong>abstract</strong> named C++ parse, read and write functions which can be attached to a <code>ResourceItem</code>.<br />
+  Examples: <a href="https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/devices/ikea/kadrilj_blind.json">IKEA KADRILJ DDF</a> and <a href="https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/devices/generic/items/state_on_item.json">state/on item</a>;</li>
+<li><a href="https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/zdp/zdp.h">ZDP</a> module to query ZDP descriptors during setup;</li>
+<li><a href="https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/zcl/zcl.h">ZCL</a> module to query ZCL <em>Basic Cluster</em> attributes during setup.</li>
+</ul>
+<p><img alt="Device Dependencies" src="https://github.com/dresden-elektronik/deconz-rest-plugin-v2/raw/master/arch/diagrams/device_dependencies.png" /></p>
+<p>Note: There are no dependencies to <code>DeRestPlugin</code>, <code>RestNodeBase</code>, <code>Sensor</code> or <code>LightNode</code> classes, even <code>deCONZ::ApsController</code> is just an opaque pointer.
+All the class sees, is a device which has sub devices as <code>Resource</code> and their <code>ResourceItems</code>.</p>
+<h2 id="state-machine">State Machine<a class="headerlink" href="#state-machine" title="Permanent link">&para;</a></h2>
+<p>TODO</p>
+<p>Each state in <a href="https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/device.cpp">device.cpp</a> is internaly implemented as a function which acts on <code>Event</code> where the entry point is the <code>Device::handleEvent(Event)</code>. The current state is therefore just a function pointer to a state function.</p>
+<pre><code class="language-cpp">void DEV_InitStateHandler(Device *device, const Event &amp;event);
+void DEV_IdleStateHandler(Device *device, const Event &amp;event);
+void DEV_NodeDescriptorStateHandler(Device *device, const Event &amp;event);
+void DEV_ActiveEndpointsStateHandler(Device *device, const Event &amp;event);
+void DEV_SimpleDescriptorStateHandler(Device *device, const Event &amp;event);
+void DEV_BasicClusterStateHandler(Device *device, const Event &amp;event);
+void DEV_GetDeviceDescriptionHandler(Device *device, const Event &amp;event);
+void DEV_BindingHandler(Device *device, const Event &amp;event);
+void DEV_BindingTableVerifyHandler(Device *device, const Event &amp;event);
+void DEV_PollIdleStateHandler(Device *device, const Event &amp;event);
+void DEV_PollNextStateHandler(Device *device, const Event &amp;event);
+void DEV_PollBusyStateHandler(Device *device, const Event &amp;event);
+</code></pre>
+<h3 id="high-level-view">High Level View<a class="headerlink" href="#high-level-view" title="Permanent link">&para;</a></h3>
+<p>The following diagram shows the general flow of the state machine. Once the basic setup is done the device enters the <em>Operating/Idle State</em> which runs multiple states in parallel — as array of function pointers. Going back to <em>Init State</em> can be done at any time, for example when reloading the DDF file. For a already initialized device it takes 3–5&nbsp;milliseconds to go from <em>Init State</em> to <em>Operating/Idle State</em>.</p>
+<p>Other than internal timeouts the timing of the state machine is controlled by events generated from the outside.</p>
+<p><img alt="Device State Machine" src="https://github.com/dresden-elektronik/deconz-rest-plugin-v2/raw/master/arch/diagrams/device_state_machine.png" /></p>
+<p>Diagram source: <a href="https://github.com/dresden-elektronik/deconz-rest-plugin-v2/blob/master/arch/diagrams/device_state_machine.puml">device_bindings.puml</a></p>
+<h4 id="node-descriptor-state">Node Descriptor State<a class="headerlink" href="#node-descriptor-state" title="Permanent link">&para;</a></h4>
+<p>The following diagram shows how error handling for ZDP Requests is done in the <code>DEV_NodeDescriptorStateHandler()</code> state function, the same principle applies for Active Endpoints and Simple Descriptors states.</p>
+<p><img alt="Node Descriptor State" src="https://github.com/dresden-elektronik/deconz-rest-plugin-v2/raw/master/arch/diagrams/device_state_node_descriptor.png" /></p>
+<p>Diagram source: <a href="https://github.com/dresden-elektronik/deconz-rest-plugin-v2/blob/master/arch/diagrams/device_state_node_descriptor.puml">device_state_node_descriptor.puml</a></p>
+<h3 id="bindings-sub-state-machine">Bindings Sub State Machine<a class="headerlink" href="#bindings-sub-state-machine" title="Permanent link">&para;</a></h3>
+<p>ZDP binding and ZCL reporting configuration is maintained during the full life cycle of the device. If any error or fault happens the state machine recovers automatically and verifies the configuration.</p>
+<p>In contrast to classic REST-API C++ code the state machine also detects changes in reporting configuration and is able to apply those.</p>
+<p>Each device has it&rsquo;s own copy of binding and ZCL reporting configuration which allows us later to provide custom configuration on a per device base.</p>
+<p>Discussion in <a href="https://github.com/dresden-elektronik/deconz-rest-plugin-v2/issues/6">issues/6</a></p>
+<p>The configuration for bindings and ZCL reporting is specified in DDF files, for example: <a href="https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/devices/ikea/gu10_ws_400lm_light.json">ikea/gu10_ws_400lm_light.json</a>.</p>
+<p><img alt="Binding State Machine" src="https://github.com/dresden-elektronik/deconz-rest-plugin-v2/raw/master/arch/diagrams/device_bindings.png" /></p>
+<p>Diagram source: <a href="https://github.com/dresden-elektronik/deconz-rest-plugin-v2/blob/master/arch/diagrams/device_bindings.puml">device_bindings.puml</a></p>
+<h2 id="relation-to-device-description-files-ddf">Relation to Device Description Files (DDF)<a class="headerlink" href="#relation-to-device-description-files-ddf" title="Permanent link">&para;</a></h2>
+<p>The <code>Device</code> class can only setup a few steps on its own like query ZDP descriptors and ZCL <em>Basic</em> Cluster attributes like modelid and manufacturer name. After that DDF files are used to setup the related sub resources.</p>
+<p>This is done outside of the <code>Device</code> class by a <a href="https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/device_descriptions.h">DDF Loader</a>. First a <code>Device</code> sends an <code>REventDDFInitRequest</code> event and waits, later on it receives an <code>REventDDFInitResponse</code> event, at that time all sub device <code>Resources</code> and <code>ResourceItems</code> are initialized and the <code>Device</code> class goes into <em>Operational/Idle</em> state.</p>
+<p><img alt="Device Description File (DDF) Init" src="https://github.com/dresden-elektronik/deconz-rest-plugin-v2/raw/master/arch/diagrams/device_init_ddf.png" /></p>
+<p>The <a href="https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/device_compat.cpp">Device Compat</a> (compatibility) module creates empty <code>Sensor</code> and <code>LightNode</code> objects and adds them to the respective plugin <code>sensors</code> and <code>nodes</code> containers. The <a href="https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/device_ddf_init.cpp">DDF Init</a> module then fills the <code>ResourceItems</code> based on the DDF and registers the <code>Resource</code> in the <code>Device</code>.</p>
+<p>This way the &ldquo;old&rdquo; code as well as the <code>Device</code> can work side by side, albeit the <code>Device</code> doesn&rsquo;t know anything about this.</p>
+<p>This process can be repeated at any time, for example during development of DDF files they can be reloaded on-the-fly without restarting deCONZ.</p>
+<h2 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h2>
+<p>Beside loose coupling, the minimal dependencies allow easier testing of the class and its behaviour of the state machine. In general all <code>Device</code> code is kept small and has no functions longer than two screen pages (if it does it is a bug). The goal is to get close to 100% test coverage, since internally mostly free standing functions are used this becomes straight forward. Each state and sub states can be tested in isolation as well as complete sequences like device pairing.</p>
+<p>First steps to test the Device class behaviour can be found in <a href="https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/tests/001-device-1.cpp">001-device-1.cpp</a>.</p>
+<h2 id="state-change-and-rest-api-functionality">State Change and REST API Functionality<a class="headerlink" href="#state-change-and-rest-api-functionality" title="Permanent link">&para;</a></h2>
+<p>TODO</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../ddf/" class="btn btn-neutral float-right" title="Device Description Files">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../.." class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/dresden-elektronik/deconz-dev-doc/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../ddf/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
