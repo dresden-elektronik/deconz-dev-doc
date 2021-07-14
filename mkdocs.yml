@@ -17,4 +17,5 @@ nav:
     - 'Modules':
       - modules/class-device/index.md
       - modules/ddf/index.md
+      - modules/ddf-loader/index.md
       - modules/fault-tolerance/index.md
