@@ -9,7 +9,14 @@
 
 /* inline code */
 .rst-content code {
-	color: #c14;
+	color: #444;
+    font-size: 13px;
+/*
+    letter-spacing: 1.25pt;
+    font-family: monospace;
+    background-color: #fafafc;
+    border:  none;
+*/
 }
 
 /* since version note */

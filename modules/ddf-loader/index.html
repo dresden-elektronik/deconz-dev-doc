@@ -8,17 +8,24 @@
   
   
   
-  <link rel="shortcut icon" href="/img/favicon.ico">
-  <title>deCONZ C++ Documentation</title>
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>DDF Loader - deCONZ C++ Documentation</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="/css/theme.css" />
-  <link rel="stylesheet" href="/css/theme_extra.css" />
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
-  <link href="/css/extra.css" rel="stylesheet" />
+  <link href="../../css/extra.css" rel="stylesheet" />
   
-  <script src="/js/jquery-2.1.1.min.js" defer></script>
-  <script src="/js/modernizr-2.8.3.min.js" defer></script>
+  <script>
+    // Current page data
+    var mkdocs_page_name = "DDF Loader";
+    var mkdocs_page_input_path = "modules/ddf-loader/index.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
@@ -32,9 +39,9 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="/." class="icon icon-home"> deCONZ C++ Documentation</a>
+        <a href="../.." class="icon icon-home"> deCONZ C++ Documentation</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="//search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
@@ -43,18 +50,20 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
                 <p class="caption"><span class="caption-text">General</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="/.">Introduction</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Introduction</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Modules</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="/modules/class-device/">Device class</a>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../class-device/">Device class</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="/modules/ddf/">Device Description Files</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../ddf/">Device Description Files</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="/modules/ddf-loader/">DDF Loader</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">DDF Loader</a>
+    <ul class="current">
+    </ul>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="/modules/fault-tolerance/">Fault Tolerance</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../fault-tolerance/">Fault Tolerance</a>
                     </li>
                 </ul>
       </div>
@@ -66,7 +75,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="/.">deCONZ C++ Documentation</a>
+        <a href="../..">deCONZ C++ Documentation</a>
       </nav>
 
       
@@ -74,10 +83,19 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="/.">Docs</a> &raquo;</li>
+    <li><a href="../..">Docs</a> &raquo;</li>
     
+      
+        
+          <li>Modules &raquo;</li>
+        
+      
     
+    <li>DDF Loader</li>
     <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/dresden-elektronik/deconz-dev-doc/edit/master/docs/modules/ddf-loader/index.md"
+          class="icon icon-github"> Edit on GitHub</a>
       
     </li>
   </ul>
@@ -87,15 +105,23 @@
           <div role="main">
             <div class="section">
               
-
-  <h1 id="404-page-not-found">404</h1>
-
-  <p><strong>Page not found</strong></p>
-
-
+                <h1 id="ddf-loader">DDF Loader<a class="headerlink" href="#ddf-loader" title="Permanent link">&para;</a></h1>
+<p><mark>Work in Progress</mark></p>
+<p><a href="https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/device_descriptions.h">device_descriptions.h</a></p>
+<p><a href="https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/device_descriptions.cpp">device_descriptions.cpp</a></p>
+              
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../fault-tolerance/" class="btn btn-neutral float-right" title="Fault Tolerance">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../ddf/" class="btn btn-neutral" title="Device Description Files"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -121,12 +147,16 @@
           <a href="https://github.com/dresden-elektronik/deconz-dev-doc/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
+        <span><a href="../ddf/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../fault-tolerance/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
-    <script>var base_url = '/';</script>
-    <script src="/js/theme.js" defer></script>
-      <script src="/search/main.js" defer></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
     <script defer>
         window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
