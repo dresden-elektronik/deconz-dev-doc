@@ -1,0 +1,32 @@
+@startuml
+
+header
+Work in progress.
+endheader
+
+title Binding State Machine
+
+!include skinparams.txt
+
+hide empty description
+scale 1.25
+
+[*] --> Binding
+Idle --> Binding : ReCheck
+Error --> Binding
+Binding --> TableVerify : Start
+TableVerify --> Idle : Done
+TableVerify --> ReadReportConfig : Stale Reports
+ReadReportConfig --> TableVerify : Config Valid
+TableVerify --> AddBinding : Missing
+AddBinding --> ReadReportConfig : Success
+AddBinding --> Error : Error
+ReadReportConfig --> Error : Error
+ReadReportConfig --> ConfigReporting : Config Invalid
+ConfigReporting --> TableVerify : Ok, Next
+ConfigReporting --> Error : Error
+
+caption Handling of ZDP Binding and ZCL Reporting Configuration
+
+
+@enduml

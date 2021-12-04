@@ -1,0 +1,56 @@
+@startuml
+
+header
+Work in progress.
+endheader
+
+title Device Dependencies
+
+!include skinparams.txt
+
+hide empty members
+
+class Event
+class Resource
+class ResourceItem
+class Device <<Resource>> {
+	+handleEvent()
+	+eventNotify()
+}
+
+class StateChange
+
+class deCONZ::Node {
+    +deCONZ::NodeDescriptor
+    +deCONZ::SimpleDescriptors
+}
+
+interface "Device Access" as DeviceAccess << (M,#b4c7d1) >> {
+    +DA_GetParseFunction()
+    +DA_GetReadFunction()
+    +DA_GetWriteFunction()
+}
+
+interface ZDP << (M,#b4c7d1) >> {
+    +ZDP_NodeDescriptorReq()
+    +ZDP_ActiveEndpointsReq()
+    +ZDP_SimpleDescriptorReq()
+}
+
+interface ZCL << (M,#b4c7d1) >> {
+    +ZCL_ReadAttributes()
+}
+
+Device --> deCONZ::Node
+Device --> DeviceAccess
+Device --> ZDP
+Device --> ZCL
+Device -> StateChange
+
+Resource <|-- Device
+'Resource o-- ResourceItem
+
+caption Class and module dependencies of the Device class
+
+
+@enduml

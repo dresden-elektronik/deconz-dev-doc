@@ -101,7 +101,7 @@ void DEV_PollBusyStateHandler(Device *device, const Event &event);
 
 The following diagram shows the general flow of the state machine. Once the basic setup is done, and the DDF file is processed in the *Get DDF State*, the device enters the *Operating/Idle State*.
 
-![Device State Machine](https://github.com/dresden-elektronik/deconz-rest-plugin-v2/raw/master/arch/diagrams/device_state_machine.png)
+![Device State Machine](../diagrams/device_state_machine.png)
 
 The *Operating/Idle State* runs multiple sub states in parallel.
 
@@ -113,7 +113,7 @@ This simplifies error handling, and verifies that every step is processed correc
     On deCONZ startup it takes 3--5&nbsp;milliseconds to go from *Init State* to *Operating/Idle State* for an already paired device.
 -->
 
-Diagram source: [device_bindings.puml](https://github.com/dresden-elektronik/deconz-rest-plugin-v2/blob/master/arch/diagrams/device_state_machine.puml)
+Diagram source: [device_bindings.puml](../diagrams/device_state_machine.puml)
 
 ### Timing
 
@@ -125,9 +125,9 @@ This is similar to the `PollManager` class in classic plugin code, with the diff
 
 The following diagram shows how error handling for ZDP Requests is done in the `DEV_NodeDescriptorStateHandler()` state function, the same principle applies for Active Endpoints and Simple Descriptors states.
 
-![Node Descriptor State](https://github.com/dresden-elektronik/deconz-rest-plugin-v2/raw/master/arch/diagrams/device_state_node_descriptor.png)
+![Node Descriptor State](../diagrams/device_state_node_descriptor.png)
 
-Diagram source: [device_state_node_descriptor.puml](https://github.com/dresden-elektronik/deconz-rest-plugin-v2/blob/master/arch/diagrams/device_state_node_descriptor.puml)
+Diagram source: [device_state_node_descriptor.puml](../diagrams/device_state_node_descriptor.puml)
 
 ### Bindings
 
@@ -141,9 +141,9 @@ Discussion in [issues/6](https://github.com/dresden-elektronik/deconz-rest-plugi
 
 The configuration for bindings and ZCL reporting is specified in DDF files, for example: [ikea/gu10_ws_400lm_light.json](https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/devices/ikea/gu10_ws_400lm_light.json).
 
-![Binding State Machine](https://github.com/dresden-elektronik/deconz-rest-plugin-v2/raw/master/arch/diagrams/device_bindings.png)
+![Binding State Machine](../diagrams/device_bindings.png)
 
-Diagram source: [device_bindings.puml](https://github.com/dresden-elektronik/deconz-rest-plugin-v2/blob/master/arch/diagrams/device_bindings.puml)
+Diagram source: [device_bindings.puml](../diagrams/device_bindings.puml)
 
 ## Sub-devices
 
@@ -155,7 +155,7 @@ Sub-devices are created  by the [DDF Loader](../ddf-loader), **not** the `Device
 
 2. The DDF Loader sends a `REventDDFInitResponse` event, at that time all sub device `Resources` and `ResourceItems` are initialized and the `Device` class goes into *Operational/Idle* state.
 
-![Device Description File (DDF) Init](https://github.com/dresden-elektronik/deconz-rest-plugin-v2/raw/master/arch/diagrams/device_init_ddf.png)
+![Device Description File (DDF) Init](../diagrams/device_init_ddf.png)
 
 
 The [Device Compat](https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/device_compat.cpp) (compatibility) module creates empty `Sensor` and `LightNode` objects and adds them to the respective plugin `sensors` and `nodes` containers. The [DDF Init](https://github.com/manup/deconz-rest-plugin/blob/device_descriptions/device_ddf_init.cpp) module then fills the `ResourceItems` based on the DDF file and registers the `Resource` in the `Device`.
