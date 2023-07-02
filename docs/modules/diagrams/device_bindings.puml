@@ -14,7 +14,8 @@ scale 1.25
 [*] --> Binding
 Idle --> Binding : ReCheck
 Error --> Binding
-Binding --> TableVerify : Start
+Binding --> TableRead : Start
+TableRead --> TableVerify : Done
 TableVerify --> Idle : Done
 TableVerify --> ReadReportConfig : Stale Reports
 ReadReportConfig --> TableVerify : Config Valid
