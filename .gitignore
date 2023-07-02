@@ -1,5 +1,6 @@
 site/*
 _theme_packages/*
+venv/
 
 Thumbs.db
 .DS_Store
